@@ -32,7 +32,7 @@ export default function Home() {
     <main className="min-h-screen bg-slate-950 text-white">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-cyan-400">
-          SignalOps / Feedback Bridge
+          Nurtura / Feedback Bridge
         </p>
 
         <h1 className="max-w-3xl text-5xl font-bold tracking-tight">

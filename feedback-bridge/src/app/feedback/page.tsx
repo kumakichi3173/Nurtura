@@ -40,7 +40,7 @@ export default async function FeedbackListPage() {
         <div className="mt-8 mb-8 flex items-center justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-cyan-400">
-              Project Bridge
+              Feedback Bridge
             </p>
             <h1 className="mt-2 text-3xl font-bold">Feedback Repository</h1>
           </div>
