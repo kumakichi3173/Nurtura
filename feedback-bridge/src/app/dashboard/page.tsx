@@ -135,7 +135,7 @@ export default async function ReportingDashboardPage() {
 
         <div className="mt-8">
           <p className="text-sm font-semibold uppercase tracking-wide text-cyan-400">
-            Project Bridge
+            Feedback Bridge
           </p>
           <h1 className="mt-2 text-3xl font-bold">Reporting Dashboard</h1>
           <p className="mt-3 max-w-2xl text-slate-300">

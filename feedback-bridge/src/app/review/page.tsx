@@ -48,7 +48,7 @@ export default async function ReviewBoardPage() {
             </Link>
 
             <p className="mt-8 text-sm font-semibold uppercase tracking-wide text-cyan-400">
-              Project Bridge
+              Feedback Bridge
             </p>
             <h1 className="mt-2 text-4xl font-bold">
               Review / Prioritization Board
