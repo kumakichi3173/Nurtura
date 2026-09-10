@@ -1,6 +1,6 @@
 # Nurtura / Feedback Bridge
 
-[Live Demo](https://nurtura-three.vercel.app/)
+[Live Demo](nurtura-feedback.vercel.app)
 
 A portfolio demo of a database-backed provider feedback management platform. The app centralizes provider feedback, supports internal review and prioritization, and turns feedback records into dashboard insights for product and operational decision-making.
 
