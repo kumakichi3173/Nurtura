@@ -3,13 +3,19 @@ import { redirect } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error("Missing Supabase environment variables");
+if (!supabaseUrl || !supabaseSecretKey) {
+  throw new Error("Missing Supabase server environment variables");
 }
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createClient(supabaseUrl, supabaseSecretKey, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+    detectSessionInUrl: false,
+  },
+});
 
 async function createFeedback(formData: FormData) {
   "use server";
@@ -19,8 +25,32 @@ async function createFeedback(formData: FormData) {
   const category = String(formData.get("category") ?? "").trim();
   const description = String(formData.get("description") ?? "").trim();
 
+  const allowedCategories = new Set([
+    "Provider Experience",
+    "Operations",
+    "Product Feature",
+    "Technical Issue",
+    "Marketplace",
+  ]);
+
   if (!title || !providerName || !category || !description) {
     throw new Error("Title, provider, category, and description are required.");
+  }
+
+  if (title.length > 120) {
+    throw new Error("Title must be 120 characters or fewer.");
+  }
+
+  if (providerName.length > 120) {
+    throw new Error("Provider name must be 120 characters or fewer.");
+  }
+
+  if (description.length > 2000) {
+    throw new Error("Description must be 2000 characters or fewer.");
+  }
+
+  if (!allowedCategories.has(category)) {
+    throw new Error("Invalid category.");
   }
 
   const { count, error: countError } = await supabase
@@ -77,7 +107,8 @@ export default function SubmitFeedbackPage() {
               <input
                 id="title"
                 name="title"
-                required
+            required
+            maxLength={120}
                 className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white"
                 placeholder="Short title of the feedback"
               />
@@ -93,7 +124,8 @@ export default function SubmitFeedbackPage() {
               <input
                 id="provider_name"
                 name="provider_name"
-                required
+            required
+            maxLength={120}
                 className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white"
                 placeholder="Provider name"
               />
@@ -131,7 +163,8 @@ export default function SubmitFeedbackPage() {
               <textarea
                 id="description"
                 name="description"
-                required
+            required
+            maxLength={2000}
                 className="mt-2 min-h-32 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white"
                 placeholder="Describe the issue, feedback, or improvement idea"
               />
