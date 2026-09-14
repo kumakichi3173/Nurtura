@@ -88,18 +88,6 @@ export default function Home() {
             ))}
           </div>
         </section>
-
-        <section className="mt-16 rounded-xl border border-slate-800 bg-slate-900 p-6">
-          <p className="text-sm font-semibold uppercase tracking-wide text-cyan-400">
-            Current Demo Scope
-          </p>
-          <p className="mt-3 max-w-3xl text-slate-300">
-            This local V1 demo supports feedback submission, centralized
-            repository viewing, feedback detail review, internal status and
-            priority updates, review board visibility, and reporting dashboard
-            summaries backed by Supabase.
-          </p>
-        </section>
       </div>
     </main>
   );
